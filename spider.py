@@ -11,7 +11,7 @@ for i, x in enumerate(containers):
 	shipping = x.find("li", {"class": "price-ship"}).text.strip()
 	brand = x.find("a", {"class": "item-brand"}).img["src"].strip()
 	deal = x.find("p", {"class": "item-promo"})
-	deal = deal.text if deal.text else ""
+	deal = deal.text.strip() if deal.text else ""
 	rating = x.find("a", {"class": "item-rating"})["title"] if x.find("a", {"class": "item-rating"}) else ""
 	image = x.find("a", {"class": "item-img"}).img["src"].strip()
 	id_name = "".join(title.split(" "))            	
