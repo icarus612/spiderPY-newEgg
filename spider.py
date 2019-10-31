@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup as soup
 import json 
 import sys
+
 url = f"https://www.newegg.com/{sys.argv[1]}" if len(sys.argv) > 1 else "https://www.newegg.com/Video-Cards-Video-Devices/Category/ID-38?Tpk=graphics%20card"
 containers = soup(requests.get(url).content, 'html.parser').findAll("div", {"class": "item-container"})
 obj = []
