@@ -6,6 +6,7 @@ import sys
 url = f"https://www.newegg.com/{sys.argv[1]}" if len(sys.argv) > 1 else "https://www.newegg.com/Video-Cards-Video-Devices/Category/ID-38?Tpk=graphics%20card"
 containers = soup(requests.get(url).content, 'html.parser').findAll("div", {"class": "item-container"})
 obj = []
+
 for i, x in enumerate(containers):
 	title = x.find("a", {"class": "item-title"}).text.strip()
 	price = x.find("li", {"class": "price-current"}).text.strip()
@@ -16,7 +17,7 @@ for i, x in enumerate(containers):
 	rating = x.find("a", {"class": "item-rating"})["title"] if x.find("a", {"class": "item-rating"}) else ""
 	image = x.find("a", {"class": "item-img"}).img["src"].strip()
 	id_name = "".join(title.split(" "))            	
-	obj.append({"id": f"{i}",  f"{id_name}" : {"title": f"{title}", "brand": f"{brand}", "price": f"{price}", "shipping": f"{shipping}", "rating": f"{rating}", "deal": f"{deal}", "image_url": f"{image}",}})
+	obj.append({"id": f"{i}",  f"{id_name}": {"title": f"{title}", "brand": f"{brand}", "price": f"{price}", "shipping": f"{shipping}", "rating": f"{rating}", "deal": f"{deal}", "image_url": f"{image}"}})
 
 data = {"Products": []}
 for i in obj:
